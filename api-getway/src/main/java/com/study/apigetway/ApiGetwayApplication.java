@@ -14,7 +14,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public interface ApiGetwayApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = new SpringApplicationBuilder(ApiGetwayApplication.class)
+        new SpringApplicationBuilder(ApiGetwayApplication.class)
                 .web(WebApplicationType.SERVLET)
                 .run(args);
     }
