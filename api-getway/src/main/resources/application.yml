@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: api-getway
+server:
+  port: 5555
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+zuul:
+  routes:
+    api-hello-service:
+      path: /hello-service/**
+      serviceId: hello-service
+    api-ribbon-consumer:
+      path: /ribbon-consumer/**
+      serviceId: ribbon-consumer
+    api-feign-consumer:
+      path: /feign-consumer/**
+      serviceId: feign-consumer
