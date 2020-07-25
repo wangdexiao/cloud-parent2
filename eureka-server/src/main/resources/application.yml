@@ -1,18 +1,9 @@
-server:
-  port: 1111
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-  server:
-    enable-self-preservation: false # 设为false，关闭自我保护
-    eviction-interval-timer-in-ms: 12000 # 清理间隔（单位毫秒，默认是60*1000）启用主动失效，并且每次主动失效检测间隔为3s
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+spring:
+  profiles:
+    active: huaweiregistercenter
+  application:
+    name: eureka-center
+tecent-registercenter-host: 119.45.14.75
+tecent-registercenter-port: 1111
+huawei-registercenter-host: 139.9.139.63
+huawei-registercenter-port: 1111

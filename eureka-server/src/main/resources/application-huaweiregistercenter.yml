@@ -1,0 +1,16 @@
+server:
+  port: ${huawei-registercenter-port}
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: ${huawei-registercenter-host}
+    instance-id: ${eureka.instance.ip-address}:${server.port}
+  client:
+    register-with-eureka: true #是否向注册中心注册自己
+    fetch-registry: true #检索服务
+    service-url:
+      defaultZone: http://${tecent-registercenter-host}:${tecent-registercenter-port}/eureka/
+  server:
+    enable-self-preservation: false # 设为false，关闭自我保护
+    eviction-interval-timer-in-ms: 12000 # 清理间隔（单位毫秒，默认是60*1000）启用主动失效，并且每次主动失效检测间隔为3s
+
