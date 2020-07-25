@@ -1,8 +1,15 @@
-
-
 spring:
   application:
     name: hello-service
+  cloud:
+    config:
+      enabled: true
+      name: ${spring.application.name}
+      profile: dev
+      label: master
+      discovery:
+        enabled: true
+        service-id: config-server
 eureka:
   client:
     service-url:

@@ -1,6 +1,15 @@
 spring:
   application:
     name: ribbon-consumer
+  cloud:
+    config:
+      discovery:
+        service-id: config-server
+        enabled: true
+      name: ${spring.application.name}
+      profile: dev
+      label: master
+      enabled: true
 server:
   port: 9000
 eureka:

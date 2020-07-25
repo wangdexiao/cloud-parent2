@@ -26,9 +26,14 @@ public class HelloController {
     @Value("${server.port}")
     private int port;
 
+    @Value("${testNum}")
+    private int testNum;
+
 
     @RequestMapping(path = "/hello",method = RequestMethod.GET)
     public String index(){
+
+        log.error("testNum:" + testNum);
         List<String> services = discoveryClient.getServices();
         log.info("services:" + services.toString());
 
