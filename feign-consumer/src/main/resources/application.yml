@@ -6,8 +6,9 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:1111/eureka/
+      defaultZone: http://139.9.139.63:1111/eureka/,http://119.45.14.75:1111/eureka/
   instance:
-     lease-renewal-interval-in-seconds: 10  #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
-     lease-expiration-duration-in-seconds: 5  #服务刷新时间配置，每隔这个时间会主动心跳一次
-
+    lease-renewal-interval-in-seconds: 10  #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
+    lease-expiration-duration-in-seconds: 5  #服务刷新时间配置，每隔这个时间会主动心跳一次
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}

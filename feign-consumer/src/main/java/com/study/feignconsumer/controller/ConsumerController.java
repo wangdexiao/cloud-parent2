@@ -11,20 +11,20 @@ public class ConsumerController {
 
 
     @Autowired
-    private HelloService helloService;
+    private HelloService helloService3;
 
-    @Autowired
-    private HelloService helloService2;
+//    @Autowired
+//    private HelloService3 helloService32;
 
 
     @RequestMapping(value = "/feign-consumer",method = RequestMethod.GET)
     public String helloConsumer(){
-        return helloService.hello();
+        return helloService3.hello();
     }
 
 
-    @RequestMapping(value = "/feign-consumer2",method = RequestMethod.GET)
-    public String helloConsumer2(){
-        return helloService2.hello();
-    }
+//    @RequestMapping(value = "/feign-consumer2",method = RequestMethod.GET)
+//    public String helloConsumer2(){
+//        return helloService32.hello();
+//    }
 }
