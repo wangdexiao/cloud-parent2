@@ -1,6 +1,15 @@
 spring:
   application:
     name: api-getway
+  cloud:
+    config:
+      name: ${spring.application.name}
+      profile: dev
+      label: master
+      enabled: true
+      discovery:
+        enabled: true
+        service-id: config-server
 server:
   port: 5555
 eureka:
@@ -12,14 +21,3 @@ eureka:
     lease-expiration-duration-in-seconds: 5  #服务刷新时间配置，每隔这个时间会主动心跳一次
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
-zuul:
-  routes:
-    api-hello-service:
-      path: /hello-service/**
-      serviceId: hello-service
-    api-ribbon-consumer:
-      path: /ribbon-consumer/**
-      serviceId: ribbon-consumer
-    api-feign-consumer:
-      path: /feign-consumer/**
-      serviceId: feign-consumer
