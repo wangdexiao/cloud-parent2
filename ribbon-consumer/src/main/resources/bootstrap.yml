@@ -1,4 +1,9 @@
 spring:
+  rabbitmq:
+    host: 139.9.139.63
+    port: 5672
+    username: guest
+    password: guest
   application:
     name: ribbon-consumer
   cloud:
@@ -21,3 +26,9 @@ eureka:
     lease-expiration-duration-in-seconds: 5  #服务刷新时间配置，每隔这个时间会主动心跳一次
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'refresh'
+

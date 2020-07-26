@@ -4,12 +4,15 @@ import com.study.ribbonconsumer.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @Slf4j
+@RefreshScope
 @RestController
 public class ConsumerController {
 
@@ -35,5 +38,10 @@ public class ConsumerController {
         return helloService.helloService();
     }
 
+    @PostMapping(value = "/testNum")
+    public String testNum(){
+        log.error("testNum:" + testNum);
+        return testNum + "";
+    }
 
 }
