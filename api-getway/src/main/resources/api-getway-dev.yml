@@ -1,4 +1,7 @@
 zuul:
+  host:
+    connect-timeout-millis: 15000 #HTTP连接超时要比Hystrix的大
+    socket-timeout-millis: 60000   #socket超时
   routes:
     api-hello-service:
       path: /hello-service/**
@@ -9,3 +12,16 @@ zuul:
     api-feign-consumer:
       path: /feign-consumer/**
       serviceId: feign-consumer
+    api-config-consumer:
+      path: /config/**
+      serviceId: config-server
+ribbon:
+  ConnectTimeout: 15000 # 连接超时时间(ms)
+  ReadTimeout: 15000 # 通信超时时间(ms)
+hystrix:
+  command:
+    default:
+    execution:
+    isolation:
+    thread:
+    timeoutInMilliseconds: 60000 # 设置hystrix的超时时间为6000ms
