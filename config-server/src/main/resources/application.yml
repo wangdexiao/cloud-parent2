@@ -1,6 +1,12 @@
 spring:
   application:
     name: config-server
+    # rabbitmq相干配置
+  rabbitmq:
+    host: 139.9.139.63
+    port: 5672
+    username: guest
+    password: guest
   cloud:
     config:
       server:
@@ -9,6 +15,13 @@ spring:
           search-paths: config-repo/
           username: wadexi2207@163.com
           password: Wdx123123123.
+          # 开启启动时直接从git获取配置
+          clone-on-start: true
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+
 server:
   port: 7001
 eureka:
@@ -20,3 +33,9 @@ eureka:
     lease-expiration-duration-in-seconds: 5  #服务刷新时间配置，每隔这个时间会主动心跳一次
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
+
