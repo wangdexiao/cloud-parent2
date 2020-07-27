@@ -10,6 +10,7 @@
         <module>api-getway</module>
         <module>config-server</module>
         <module>rabbitmq-hello</module>
+        <module>ngrok-demo</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
