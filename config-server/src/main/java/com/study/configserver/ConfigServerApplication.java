@@ -3,10 +3,12 @@ package com.study.configserver;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
+@ServletComponentScan(basePackages = "com.study.configserver.filter")
 @EnableEurekaClient
 @EnableConfigServer
 @SpringBootApplication
