@@ -17,7 +17,7 @@ import java.io.IOException;
  * @author sun 2020/2/26 11:20
  */
 @Order(Ordered.HIGHEST_PRECEDENCE)
-@Component
+//@Component
 @WebFilter(urlPatterns = "/actuator/bus-refresh")
 public class WebHookFilter implements Filter {
 
