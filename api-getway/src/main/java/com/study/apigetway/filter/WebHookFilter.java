@@ -13,8 +13,8 @@ import java.io.IOException;
 /**
  * @author sun 2020/2/26 11:20
  */
-@Component
-@WebFilter(urlPatterns = "/actuator/bus-refresh")
+//@Component 不要加该注解
+@WebFilter(urlPatterns = "/actuator/bus-refresh",filterName = "securityRequestFilter")
 public class WebHookFilter implements Filter {
 
     @Override
