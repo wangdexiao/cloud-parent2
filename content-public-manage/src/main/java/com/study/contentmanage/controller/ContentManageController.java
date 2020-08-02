@@ -24,7 +24,7 @@ public class ContentManageController {
 
 
     @RequestMapping(method = RequestMethod.POST,path = "/del")
-    public int delContent(int id){
+    public int delContent(Integer id){
         return contentService.delContent(id);
     }
 
