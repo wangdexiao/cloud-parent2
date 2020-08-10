@@ -7,6 +7,7 @@ import org.codehaus.jettison.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.ClassUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,12 +25,13 @@ public class UEditorController {
     @Value("${web.upload-path}")
     private String uploadRootDir;
 
+    @CrossOrigin
     @RequestMapping(value="/config")
-
     public void config(HttpServletRequest request, HttpServletResponse response) {
 
         response.setContentType("application/json");
-
+//        response.addHeader("X-Content-Type-Options", "nosniff");
+        String callback = request.getParameter("callback");
 //        String rootPath = request.getSession().getServletContext().getRealPath("/");
 //        String rootPath = "D:/";
 
@@ -39,6 +41,7 @@ public class UEditorController {
 
             PrintWriter writer = response.getWriter();
 
+//            writer.write(callback + "("+exec+")");
             writer.write(exec);
 
             writer.flush();

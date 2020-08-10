@@ -15,6 +15,26 @@ spring:
       profile: dev
       label: master
       enabled: true
+  thymeleaf:
+    cache: false
+security:
+    oauth2:
+        client:
+            client-id: sharecesuo
+            client-secret: 123456
+            user-authorization-uri: http://192.168.1.100:8000/oauth/authorize #授权码端点
+            access-token-uri: http://192.168.1.100:8000/oauth/token #令牌断点
+            use-current-uri: false
+            registered-redirect-uri: http://192.168.1.100:10001/login
+#            pre-established-redirect-uri: http://192.168.1.100:10001/login
+#            token-name: access_token
+#            authentication-scheme: query
+#            client-authentication-scheme: form
+        resource:
+#            token-info-uri: http://192.168.1.100/oauth/check_token
+            jwt:
+                key-uri: http://192.168.1.100:8000/oauth/token_key
+            user-info-uri:
 server:
   port: 10001
 eureka:
@@ -32,3 +52,13 @@ management:
     web:
       exposure:
         include: 'refresh'
+logging:
+  level:
+    org.springframework.security: debug
+
+sso:
+  client-id: sharecesuo
+  client-secret: 123456
+  redirect-uri: http://192.168.1.100:8099/login
+  access-token-uri: http://192.168.1.100:8000/oauth/token
+  user-info-uri: http://192.168.1.100:8002/userInfo

@@ -20,4 +20,5 @@ public interface ApiGetwayApplication {
                 .web(WebApplicationType.SERVLET)
                 .run(args);
     }
+
 }
