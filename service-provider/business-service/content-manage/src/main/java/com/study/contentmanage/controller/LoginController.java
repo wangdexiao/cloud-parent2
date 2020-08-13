@@ -27,7 +27,7 @@ public class LoginController {
     @Value("${sso.client-secret:123456}")
     private String clientSecret;
 
-    @Value("${sso.redirect-uri:http://192.168.1.100:80/login}")
+    @Value("${sso.redirect-uri:http://192.168.1.100:8099/login}")
     private String redirectUri;
 
     @Value("${sso.access-token-uri:http://192.168.1.100:8000/oauth/token}")
