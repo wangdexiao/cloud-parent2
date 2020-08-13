@@ -14,41 +14,33 @@
 
 
     <modules>
-        <module>eureka-server</module>
-        <module>interface-provider</module>
-        <module>ribbon-consumer</module>
-        <module>feign-consumer</module>
-        <module>api-getway</module>
-        <module>config-server</module>
-        <module>rabbitmq-hello</module>
-        <module>ngrok-demo</module>
-        <module>base</module>
-        <module>sso-server</module>
+        <module>public-service</module>
+        <module>business-service</module>
     </modules>
 
-    <dependencies>
+    <!--<dependencies>-->
+        <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+        <!--&lt;!&ndash;<groupId>org.springframework.boot</groupId>&ndash;&gt;-->
+        <!--&lt;!&ndash;<artifactId>spring-boot-devtools</artifactId>&ndash;&gt;-->
+        <!--&lt;!&ndash;<scope>runtime</scope>&ndash;&gt;-->
+        <!--&lt;!&ndash;<optional>true</optional>&ndash;&gt;-->
+        <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
         <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-devtools</artifactId>-->
-        <!--<scope>runtime</scope>-->
-        <!--<optional>true</optional>-->
+            <!--<groupId>org.projectlombok</groupId>-->
+            <!--<artifactId>lombok</artifactId>-->
+            <!--<optional>true</optional>-->
         <!--</dependency>-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-    </dependencies>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-test</artifactId>-->
+            <!--<scope>test</scope>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.junit.vintage</groupId>-->
+                    <!--<artifactId>junit-vintage-engine</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
+    <!--</dependencies>-->
 
 </project>
