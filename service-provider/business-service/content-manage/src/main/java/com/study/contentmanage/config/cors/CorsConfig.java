@@ -1,6 +1,6 @@
 package com.study.contentmanage.config.cors;
 
-import com.study.contentmanage.filter.CORSFilter;
+import com.study.contentmanage.filter.LogFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -11,17 +11,16 @@ import org.springframework.core.Ordered;
 public class CorsConfig {
 
     @Autowired
-    private CORSFilter corsFilter;
+    private LogFilter logFilter;
 
     @Bean
-    public FilterRegistrationBean<CORSFilter> corsFilterFilterRegistrationBean(){
-        FilterRegistrationBean<CORSFilter> filterFilterRegistrationBean
+    public FilterRegistrationBean<LogFilter> corsFilterFilterRegistrationBean(){
+        FilterRegistrationBean<LogFilter> filterFilterRegistrationBean
                 = new FilterRegistrationBean<>();
         filterFilterRegistrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        filterFilterRegistrationBean.setFilter(corsFilter);
+        filterFilterRegistrationBean.setFilter(logFilter);
         filterFilterRegistrationBean.addUrlPatterns("/*");
-        filterFilterRegistrationBean.addInitParameter("url-exclude","/ueditor/config");
-        filterFilterRegistrationBean.setName("CORSFilter");
+        filterFilterRegistrationBean.setName("LogFilter");
         return filterFilterRegistrationBean;
     }
 }
