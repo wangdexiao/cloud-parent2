@@ -1,10 +1,7 @@
 package com.study.ssoserver.config;
 
 import com.study.base.mybatisplus.entity.Result;
-import com.study.ssoserver.security.AjaxAuthFailHandler;
-import com.study.ssoserver.security.AjaxAuthSuccessHandler;
-import com.study.ssoserver.security.AjaxLogoutSuccessHandler;
-import com.study.ssoserver.security.UnauthorizedEntryPoint;
+import com.study.ssoserver.security.*;
 import com.study.ssoserver.service.MyUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
@@ -46,6 +43,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UnauthorizedEntryPoint unauthorizedEntryPoint;
+
+    @Autowired
+    private JsonAccessDeniedHandler accessDeniedHandler;
 
 
 
@@ -99,10 +99,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .usernameParameter("username")
                     .passwordParameter("passwd")
                     .loginProcessingUrl("/login")
+                // 设置没有权限访问的处理程序
+                .and().exceptionHandling()
+                    .accessDeniedHandler(accessDeniedHandler)
                 .and()
-                .logout()
+                    .logout().logoutUrl("/logout")
                         .logoutSuccessHandler(new AjaxLogoutSuccessHandler())
-                        .logoutUrl("/logout")
                 ;
     }
 

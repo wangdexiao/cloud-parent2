@@ -67,6 +67,7 @@ public class Result<T> {
 
     public static final int AUTH_SUCCESS = 208;
     public static final int AUTH_FAIL = 209;
+    public static final int ACCESS_FAIL = 210;
     /**
      * 认证成功
      * @param data
@@ -90,8 +91,22 @@ public class Result<T> {
     public static <T> Result authFail(T data){
         Result<T> result = new Result<T>();
         result.data = data;
-        result.code = AUTH_FAIL;
+        result.code = ACCESS_FAIL;
         result.msg = "认证失败";
+        return result;
+    }
+
+    /**
+     * 无权限访问
+     * @param data
+     * @param <T>
+     * @return
+     */
+    public static <T> Result accessFail(T data){
+        Result<T> result = new Result<T>();
+        result.data = data;
+        result.code = ACCESS_FAIL;
+        result.msg = "没有权限访问";
         return result;
     }
 
