@@ -1,6 +1,7 @@
 package com.study.contentmanage.controller;
 
 import com.study.base.mybatisplus.entity.Result;
+import com.study.base.mybatisplus.entity.UserInfoEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -44,7 +45,7 @@ public class LoginController {
             Map tokenMap = tokenMapResult.getData();
             String accessToken = (String)tokenMap.get("access_token");
             //获取用户信息
-            Map userInfo = getUserInfo(accessToken);
+            UserInfoEntity userInfo = getUserInfo(accessToken);
             // TODO: 2020/8/11 0011
 //            SecurityContextHolder.getContext().setAuthentication();
 //        List<String> roles = getRoles(userInfo);
@@ -52,7 +53,7 @@ public class LoginController {
             Map<String,Object> result = new HashMap<String,Object>(3);
             result.put("tokenInfo", tokenMap);
             result.put("userInfo", userInfo);
-            result.put("roles", userInfo.get("authories"));
+            result.put("roles", userInfo.getAuthories());
 
             return Result.ok(result);
         }else {
@@ -87,10 +88,10 @@ public class LoginController {
     /**
      * 获取用户信息
      */
-    public Map getUserInfo(String accessToken) {
+    public UserInfoEntity getUserInfo(String accessToken) {
         RestTemplate restTemplate = new RestTemplate();
-        Map result = restTemplate.postForObject(userInfoUri+"?access_token="+accessToken,null,Map.class);
-        return result;
+        UserInfoEntity userInfoEntity = restTemplate.postForObject(userInfoUri+"?access_token="+accessToken,null,UserInfoEntity.class);
+        return userInfoEntity;
     }
 
 }
