@@ -3,7 +3,7 @@ server:
   address: 192.168.1.100
 spring:
   application:
-    name: content-public-manage
+    name: content-manage
   cloud:
     config:
       name: ${spring.application.name}
@@ -13,22 +13,6 @@ spring:
       discovery:
         enabled: true
         service-id: config-server
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/content-manage?user=wadexi&amp;password=wadexi&amp;useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true
-    username: wadexi
-    password: wadexi
-  mvc:
-    static-path-pattern: /**
-  resources:
-    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
-  servlet:
-    multipart:
-      enabled: true
-      max-file-size: 100MB
-      max-request-size: 100MB
-web:
-    upload-path: D:/
 eureka:
   client:
     service-url:
@@ -39,20 +23,7 @@ eureka:
     prefer-ip-address: true
     ip-address: 192.168.1.100
     instance-id: ${eureka.instance.ip-address}:${server.port}
-management:
-  endpoints:
-    web:
-      exposure:
-        include: 'refresh'
-logging:
-  level:
-    org.springframework.security: debug
-sso:
-  client-id: sharecesuo
-  client-secret: 123456
-  redirect-uri: http://192.168.1.100:8099/login
-  access-token-uri: http://192.168.1.100:8000/oauth/token
-  user-info-uri: http://192.168.1.100:8002/userInfo
+
 
 
 #security:
