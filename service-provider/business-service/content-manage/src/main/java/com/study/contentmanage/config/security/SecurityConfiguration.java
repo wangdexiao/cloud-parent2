@@ -1,5 +1,6 @@
 package com.study.contentmanage.config;
 
+import com.study.contentmanage.security.JsonAccessDeniedHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +11,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Slf4j
 @Configuration
@@ -22,6 +24,9 @@ public class SecurityConfiguration extends ResourceServerConfigurerAdapter {
     @Autowired
     private TokenStore tokenStore;
 
+    @Autowired
+    private JsonAccessDeniedHandler accessDeniedHandler;
+
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources.tokenStore(tokenStore)
@@ -30,12 +35,15 @@ public class SecurityConfiguration extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http
+        http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/login").permitAll()
-                        .anyRequest().authenticated();
+                    .antMatchers("/login","/ueditor/**").permitAll()
+                    .anyRequest().authenticated()
+                .and()
+                    .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
+                    ;
     }
     //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
