@@ -1,12 +1,12 @@
  package com.baidu.ueditor;
 
+ import com.alibaba.fastjson.JSONException;
  import com.baidu.ueditor.define.ActionMap;
  import com.baidu.ueditor.define.BaseState;
  import com.baidu.ueditor.define.State;
  import com.baidu.ueditor.hunter.FileManager;
  import com.baidu.ueditor.hunter.ImageHunter;
  import com.baidu.ueditor.upload.Uploader;
- import org.codehaus.jettison.json.JSONException;
 
  import java.util.Map;
  import javax.servlet.http.HttpServletRequest;

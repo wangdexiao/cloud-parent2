@@ -92,7 +92,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                     .csrf().disable()
-//                    .formLogin().loginPage("http://192.168.1.100:8099/login")
                     .formLogin().loginPage("/loginpage")
                                 .successHandler(new AjaxAuthSuccessHandler())
                                 .failureHandler(new AjaxAuthFailHandler())

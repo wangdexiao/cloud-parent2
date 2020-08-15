@@ -1,7 +1,6 @@
 package com.study;
 
-import com.google.common.collect.Sets;
-import com.study.contentmanage.ContentManageApplication;
+import com.study.contentmanage.ClientContentManageApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,28 +19,28 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ContentManageApplication.class)
+@SpringBootTest(classes = ClientContentManageApplication.class)
 public class test {
 
-    @Autowired
-    private TokenStore tokenStore;
-
-    @Test
-    public void testTokenStore(){
-        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority("sys:admin"));
-
-        Map<String, String> map = new HashMap<>();
-        map.put("test", "test");
-        HashSet<String> role_admin = Sets.newHashSet("role_admin");
-        HashSet<String> res_id = Sets.newHashSet("res_id");
-        OAuth2Request oAuth2Request = new OAuth2Request(map, "sharecuosuo", grantedAuthorities, true, role_admin, res_id, "http://www.baidu.com", Sets.newHashSet("test"), null);
-
-
-        Authentication userAuth = new UsernamePasswordAuthenticationToken("wadexi", null, grantedAuthorities);
-        OAuth2Authentication auth2Authentication = new OAuth2Authentication(oAuth2Request,userAuth);
-        OAuth2AccessToken token = new DefaultOAuth2AccessToken("12345678901234567890123456789012");
-        tokenStore.storeAccessToken(token,auth2Authentication);
-        OAuth2AccessToken accessToken = tokenStore.getAccessToken(auth2Authentication);
-    }
+//    @Autowired
+//    private TokenStore tokenStore;
+//
+//    @Test
+//    public void testTokenStore(){
+//        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+//        grantedAuthorities.add(new SimpleGrantedAuthority("sys:admin"));
+//
+//        Map<String, String> map = new HashMap<>();
+//        map.put("test", "test");
+//        HashSet<String> role_admin = Sets.newHashSet("role_admin");
+//        HashSet<String> res_id = Sets.newHashSet("res_id");
+//        OAuth2Request oAuth2Request = new OAuth2Request(map, "sharecuosuo", grantedAuthorities, true, role_admin, res_id, "http://www.baidu.com", Sets.newHashSet("test"), null);
+//
+//
+//        Authentication userAuth = new UsernamePasswordAuthenticationToken("wadexi", null, grantedAuthorities);
+//        OAuth2Authentication auth2Authentication = new OAuth2Authentication(oAuth2Request,userAuth);
+//        OAuth2AccessToken token = new DefaultOAuth2AccessToken("12345678901234567890123456789012");
+//        tokenStore.storeAccessToken(token,auth2Authentication);
+//        OAuth2AccessToken accessToken = tokenStore.getAccessToken(auth2Authentication);
+//    }
 }

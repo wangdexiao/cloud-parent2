@@ -1,9 +1,9 @@
  package com.baidu.ueditor;
 
+ import com.alibaba.fastjson.JSONArray;
+ import com.alibaba.fastjson.JSONException;
+ import com.alibaba.fastjson.JSONObject;
  import org.apache.commons.io.IOUtils;
- import org.codehaus.jettison.json.JSONArray;
- import org.codehaus.jettison.json.JSONException;
- import org.codehaus.jettison.json.JSONObject;
 
  import java.io.BufferedReader;
  import java.io.File;
@@ -135,13 +135,13 @@
        case 7:
          conf.put("allowFiles", getArray("imageManagerAllowFiles"));
          conf.put("dir", this.jsonConfig.getString("imageManagerListPath"));
-         conf.put("count", Integer.valueOf(this.jsonConfig.getInt("imageManagerListSize")));
+         conf.put("count", Integer.valueOf(this.jsonConfig.getInteger("imageManagerListSize")));
          break;
 
        case 6:
          conf.put("allowFiles", getArray("fileManagerAllowFiles"));
          conf.put("dir", this.jsonConfig.getString("fileManagerListPath"));
-         conf.put("count", Integer.valueOf(this.jsonConfig.getInt("fileManagerListSize")));
+         conf.put("count", Integer.valueOf(this.jsonConfig.getInteger("fileManagerListSize")));
          break;
      }
 
@@ -168,7 +168,7 @@
      String configContent = getConfigPath();
 
      try {
-       JSONObject jsonConfig = new JSONObject(configContent);
+       JSONObject jsonConfig = JSONObject.parseObject(configContent);
        this.jsonConfig = jsonConfig;
      } catch (Exception e) {
        this.jsonConfig = null;
@@ -185,9 +185,9 @@
 
    private String[] getArray(String key) throws JSONException {
      JSONArray jsonArray = this.jsonConfig.getJSONArray(key);
-     String[] result = new String[jsonArray.length()];
+     String[] result = new String[jsonArray.size()];
 
-     for (int i = 0, len = jsonArray.length(); i < len; i++) {
+     for (int i = 0, len = jsonArray.size(); i < len; i++) {
        result[i] = jsonArray.getString(i);
      }
 

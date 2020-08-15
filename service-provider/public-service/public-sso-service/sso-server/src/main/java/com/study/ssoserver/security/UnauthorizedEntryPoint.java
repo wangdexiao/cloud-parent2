@@ -24,6 +24,9 @@ public class UnauthorizedEntryPoint  implements AuthenticationEntryPoint{
     @Value("${path.login.page}")
     private String loginPagePath;
 
+    @Value("${spring.application.name}")
+    private String appName;
+
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         if(BaseUtils.isAjaxRequest(request)){
@@ -32,7 +35,7 @@ public class UnauthorizedEntryPoint  implements AuthenticationEntryPoint{
             response.setContentType("text/javascript;charset=utf-8");
             PrintWriter writer = response.getWriter();
             writer.print(Result.fail(HttpServletResponse.SC_UNAUTHORIZED,"未认证,请登录",
-                    request.getScheme() +"://" + request.getServerName()+ ":" +request.getServerPort() + loginPagePath).toString());
+                    request.getScheme() +"://" + request.getServerName()+ ":" +request.getServerPort() +"/" +appName + loginPagePath).toString());
             writer.flush();
             writer.close();
         }else{

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 public class BaseUtils {
 
     public static boolean isAjaxRequest(HttpServletRequest request) {
-        String ajaxFlag = request.getHeader("X-Requested-Wit");
+        String ajaxFlag = request.getHeader("x-requested-with");
         return ajaxFlag != null && "XMLHttpRequest".equals(ajaxFlag);
     }
 }

@@ -3,6 +3,7 @@ package com.study.contentmanage.controller;
 import com.study.contentmanage.bean.Content;
 import com.study.contentmanage.service.ContentManageService;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,7 @@ public class ContentManageController {
         return contentService.updateContent(content);
     }
 
+//    @PreAuthorize("hasAnyAuthority('sdfasdfasdfasdfasdfasdf')")
     @RequestMapping(method = RequestMethod.POST,path = "/query")
     public List<Content> selectContent(){
         return contentService.queryContent();

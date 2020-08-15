@@ -29,7 +29,7 @@ public class AjaxAuthSuccessHandler extends SavedRequestAwareAuthenticationSucce
 
         if(BaseUtils.isAjaxRequest(request)){
             response.setContentType("application/json;charset=utf-8");
-            response.addCookie(new Cookie("JSESSIONID",request.getSession().getId()));
+//            response.addCookie(new Cookie("JSESSIONID",request.getSession().getId()));
             PrintWriter out = response.getWriter();
             out.write(Result.<User>authSuccess(user).toString());
             out.flush();
