@@ -1,11 +1,11 @@
 spring:
   application:
     name: api-getway
-  rabbitmq:
-      host: 139.9.139.63
-      port: 5672
-      username: guest
-      password: guest
+#  rabbitmq:
+#      host: 139.9.139.63
+#      port: 5672
+#      username: guest
+#      password: guest
   cloud:
     config:
       name: ${spring.application.name}

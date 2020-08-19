@@ -44,23 +44,27 @@ public class JsonAuthSuccessHandler extends SavedRequestAwareAuthenticationSucce
 //            response.addCookie(new Cookie("JSESSIONID",request.getSession().getId()));
             PrintWriter out = response.getWriter();
 
-            HttpSession session = request.getSession(false);
-
-            if(session != null){
-                response.addCookie(new Cookie("JSESSIONIDD",session.getId()));
-            }
-            response.addCookie(new Cookie("test","1111111"));
+//            HttpSession session = request.getSession(false);
+//
+//            if(session != null){
+//                response.addCookie(new Cookie("JSESSIONIDD",session.getId()));
+//            }
+//            response.addCookie(new Cookie("test","1111111"));
             String redirectUrl = "";
             SavedRequest savedRequest = requestCache.getRequest(request, response);
             if(savedRequest != null){
                 redirectUrl = savedRequest.getRedirectUrl();
                 redirectUrl = StringUtils.isEmpty(redirectUrl) ? "no saved request" : redirectUrl;
+                log.error("登录成功,返回redirectUrl:" + redirectUrl);
+            }else {
+                log.error("登录成功,没有重定向url");
             }
 
             out.write(Result.authSuccess(redirectUrl).toString());
             out.flush();
             out.close();
         }else {
+            log.error("登录成功,走SavedRequestAwareAuthenticationSuccessHandler的处理");
             super.onAuthenticationSuccess(request,response,authentication);
         }
 
