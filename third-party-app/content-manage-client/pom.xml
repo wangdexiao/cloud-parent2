@@ -113,6 +113,12 @@
             <!--<version>2.2.2.RELEASE</version>-->
         <!--</dependency>-->
 
+        <dependency>
+            <groupId>org.springframework.security.oauth.boot</groupId>
+            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+            <version>2.1.2.RELEASE</version>
+        </dependency>
+
         <!--<dependency>-->
             <!--<groupId>org.springframework.security.oauth</groupId>-->
             <!--<artifactId>spring-security-oauth2</artifactId>-->
@@ -146,11 +152,13 @@
             <artifactId>base</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-            <version>2.3.8.RELEASE</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.security.oauth</groupId>-->
+            <!--<artifactId>spring-security-oauth2</artifactId>-->
+            <!--<version>2.3.8.RELEASE</version>-->
+        <!--</dependency>-->
+
+
 
         <!--<dependency>-->
             <!--<groupId>org.springframework.security.oauth.boot</groupId>-->
@@ -159,6 +167,11 @@
             <!--&lt;!&ndash;<scope>compile</scope>&ndash;&gt;-->
         <!--</dependency>-->
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.60</version>
+        </dependency>
 
     </dependencies>
 </project>

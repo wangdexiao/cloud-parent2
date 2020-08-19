@@ -13,14 +13,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 //定义登陆失败返回信息
-public class AjaxAuthFailHandler extends SimpleUrlAuthenticationFailureHandler {
+public class JsonAuthFailHandler extends SimpleUrlAuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         //登陆失败后移除session中验证码信息
 //        request.getSession().removeAttribute("codeValue");
 //        request.getSession().removeAttribute("codeTime");
 
-        if(BaseUtils.isAjaxRequest(request)){
+        if(BaseUtils.acceptJson(request)){
             response.setContentType("application/json;charset=utf-8");
             PrintWriter out = response.getWriter();
             out.write(

@@ -1,6 +1,7 @@
 package com.study.ssoserver.security;
 
 import com.study.base.mybatisplus.entity.Result;
+import com.study.ssoserver.util.BaseUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -26,13 +27,18 @@ public class JsonAccessDeniedHandler implements AccessDeniedHandler {
             HttpServletRequest request, HttpServletResponse response,
             AccessDeniedException accessDeniedException
     ) throws IOException, ServletException {
-        log.error("没有权限访问，{}", accessDeniedException);
+//        if(BaseUtils.acceptJson(request)){
+            log.error("没有权限访问，{}", accessDeniedException);
 
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("text/javascript;charset=utf-8");
-        PrintWriter writer = response.getWriter();
-        writer.print(Result.accessFail(accessDeniedException.getMessage()));
-        writer.flush();
-        writer.close();
+            response.setCharacterEncoding("utf-8");
+            response.setContentType("text/javascript;charset=utf-8");
+            PrintWriter writer = response.getWriter();
+            writer.print(Result.accessFail(accessDeniedException.getMessage()));
+            writer.flush();
+            writer.close();
+//        }else {
+//            super.
+//        }
+
     }
 }

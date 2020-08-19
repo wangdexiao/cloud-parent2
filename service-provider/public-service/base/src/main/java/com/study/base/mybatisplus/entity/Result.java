@@ -91,7 +91,7 @@ public class Result<T> {
     public static <T> Result authFail(T data){
         Result<T> result = new Result<T>();
         result.data = data;
-        result.code = ACCESS_FAIL;
+        result.code = AUTH_FAIL;
         result.msg = "认证失败";
         return result;
     }

@@ -1,7 +1,7 @@
 package com.study.apigetway.config;
 
 import com.netflix.discovery.converters.Auto;
-import com.study.apigetway.filter.AuthenticationFilter;
+//import com.study.apigetway.filter.AuthenticationFilter;
 import com.study.apigetway.filter.CORSFilter;
 import com.study.apigetway.filter.WebHookFilter;
 import org.springframework.beans.factory.annotation.Autowired;

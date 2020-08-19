@@ -11,10 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import sun.misc.BASE64Encoder;
 
+import javax.validation.constraints.NotNull;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +43,9 @@ public class LoginController {
 
     @PreAuthorize("permitAll()")
     @PostMapping("/login")
-    public Result tokenInfo( String code) throws UnsupportedEncodingException {
+    public Result tokenInfo(@NotNull String code,@NotNull String redirectUri) throws UnsupportedEncodingException {
+        this.redirectUri = redirectUri;
+
         //获取token
         Result<Map> tokenMapResult = getAccessToken(code);
         if(tokenMapResult.getCode() == Result.OK){

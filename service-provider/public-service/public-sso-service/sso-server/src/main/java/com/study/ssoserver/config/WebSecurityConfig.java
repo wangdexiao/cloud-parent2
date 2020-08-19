@@ -1,6 +1,5 @@
 package com.study.ssoserver.config;
 
-import com.study.base.mybatisplus.entity.Result;
 import com.study.ssoserver.security.*;
 import com.study.ssoserver.service.MyUserService;
 import lombok.extern.slf4j.Slf4j;
@@ -8,29 +7,14 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 @Slf4j
 @Configuration
@@ -46,6 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JsonAccessDeniedHandler accessDeniedHandler;
+
+
+
 
 
 
@@ -93,8 +80,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .csrf().disable()
                     .formLogin().loginPage("/loginpage")
-                                .successHandler(new AjaxAuthSuccessHandler())
-                                .failureHandler(new AjaxAuthFailHandler())
+                                .successHandler(new JsonAuthSuccessHandler())
+                                .failureHandler(new JsonAuthFailHandler())
                     .usernameParameter("username")
                     .passwordParameter("passwd")
                     .loginProcessingUrl("/login")
@@ -103,7 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .accessDeniedHandler(accessDeniedHandler)
                 .and()
                     .logout().logoutUrl("/logout")
-                        .logoutSuccessHandler(new AjaxLogoutSuccessHandler())
+                        .logoutSuccessHandler(new JsonLogoutSuccessHandler())
                 ;
     }
 
