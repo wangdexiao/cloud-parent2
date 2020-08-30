@@ -1,4 +1,4 @@
-package com.study.ssoserver.filter;
+package com.study.contentmanage.filter;
 
 
 import lombok.extern.slf4j.Slf4j;

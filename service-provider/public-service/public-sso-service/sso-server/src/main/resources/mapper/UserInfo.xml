@@ -3,34 +3,49 @@
 <mapper namespace="com.study.ssoserver.mapper.UserMapper">
 
     <resultMap id="userInfo" type="com.study.ssoserver.entity.UserInfo">
+
         <result column="username" property="username" javaType="java.lang.String" />
-        <result column="nickName" property="nickName" javaType="java.lang.String" />
         <result column="password" property="password" javaType="java.lang.String" />
+        <result column="is_account_non_expired" property="accountNonExpired" javaType="java.lang.Boolean" />
+        <result column="is_account_non_locked" property="accountNonLocked" javaType="java.lang.Boolean" />
+        <result column="is_credentials_non_expired" property="credentialsNonExpired" javaType="java.lang.Boolean" />
+        <result column="is_enabled" property="enabled" javaType="java.lang.Boolean" />
+
+
+        <result column="nick_name" property="nickName" javaType="java.lang.String" />
         <result column="mobile" property="mobile" javaType="java.lang.String" />
+
+        <collection property="authorities" javaType="java.util.Set" ofType="org.springframework.security.core.authority.SimpleGrantedAuthority">
+            <result column="code" property="role" javaType="java.lang.String" />
+            <!--<result column="name" property="name" javaType="java.lang.String" />-->
+        </collection>
+
 
         <collection property="role" javaType="java.util.List" ofType="com.study.ssoserver.entity.Role">
             <result column="name" property="name" javaType="java.lang.String" />
             <result column="remark" property="remark" javaType="java.lang.String" />
-            <collection property="permissionList" javaType="java.util.List" ofType="com.study.ssoserver.entity.SysPermission">
-                <result column="code" property="code" javaType="java.lang.String" />
-                <result column="name" property="name" javaType="java.lang.String" />
-            </collection>
-        </collection>
-
-
-
-        <collection property="permissions" javaType="java.util.List" ofType="com.study.ssoserver.entity.RolePermission">
-            <result column="code" property="code" javaType="java.lang.String" />
-            <result column="name" property="name" javaType="java.lang.String" />
+            <!--<collection property="permissionList" javaType="java.util.List" ofType="com.study.ssoserver.entity.SysPermission">-->
+                <!--<result column="code" property="code" javaType="java.lang.String" />-->
+                <!--<result column="name" property="name" javaType="java.lang.String" />-->
+            <!--</collection>-->
         </collection>
     </resultMap>
 
     <select id="loadUserByUsername" resultMap="userInfo">
-        select user.username,user.password,user.nick_name,user.mobile,role.name,
-                     role.remark ,
-                     per.`code`,
-                     per.name
-                 from sys_user user
+        select user.username ,
+            user.password,
+            user.nick_name,
+            user.mobile,
+            user.is_account_non_expired,
+            user.is_account_non_locked,
+            user.is_credentials_non_expired,
+            user.is_enabled,
+            role.name,
+             role.remark ,
+             per.`code`
+#             ,
+#              per.name
+         from sys_user user
 
         left join sys_user_role on user.id = sys_user_role.user_id
         left join sys_role role on role.id = sys_user_role.role_id

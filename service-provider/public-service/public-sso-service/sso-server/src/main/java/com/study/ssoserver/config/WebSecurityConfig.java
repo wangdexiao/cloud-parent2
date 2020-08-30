@@ -25,11 +25,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyUserService userService;
 
-    @Autowired
-    private UnauthorizedEntryPoint unauthorizedEntryPoint;
-
-    @Autowired
-    private JsonAccessDeniedHandler accessDeniedHandler;
+//    @Autowired
+//    private UnauthorizedEntryPoint unauthorizedEntryPoint;
+//
+//    @Autowired
+//    private JsonAccessDeniedHandler accessDeniedHandler;
 
 
 
@@ -71,23 +71,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint)
-                .and()
+//                .exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint)
+//                .and()
                 .authorizeRequests()
                 .antMatchers("/login*","/logout","/test","/clients/**")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
                     .csrf().disable()
-                    .formLogin().loginPage("/loginpage")
-                                .successHandler(new JsonAuthSuccessHandler())
-                                .failureHandler(new JsonAuthFailHandler())
+//                    .formLogin().loginPage("/loginpage")
+                    .formLogin().loginPage("http://192.168.1.100:4000")
+//                                .successHandler(new JsonAuthSuccessHandler())
+//                                .failureHandler(new JsonAuthFailHandler())
                     .usernameParameter("username")
                     .passwordParameter("passwd")
                     .loginProcessingUrl("/login")
                 // 设置没有权限访问的处理程序
-                .and().exceptionHandling()
-                    .accessDeniedHandler(accessDeniedHandler)
+//                .and().exceptionHandling()
+//                    .accessDeniedHandler(accessDeniedHandler)
                 .and()
                     .logout().logoutUrl("/logout")
                         .logoutSuccessHandler(new JsonLogoutSuccessHandler())

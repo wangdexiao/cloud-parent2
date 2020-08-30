@@ -68,6 +68,7 @@ public class Result<T> {
     public static final int AUTH_SUCCESS = 208;
     public static final int AUTH_FAIL = 209;
     public static final int ACCESS_FAIL = 210;
+    public static final int UN_AUTH_2CODE = 401; //
     /**
      * 认证成功
      * @param data
@@ -107,6 +108,20 @@ public class Result<T> {
         result.data = data;
         result.code = ACCESS_FAIL;
         result.msg = "没有权限访问";
+        return result;
+    }
+
+    /**
+     * 无权限访问，去获取授权码
+     * @param data
+     * @param <T>
+     * @return
+     */
+    public static <T> Result unAuth2code(T data){
+        Result<T> result = new Result<T>();
+        result.data = data;
+        result.code = UN_AUTH_2CODE;
+        result.msg = "未认证，去获取授权码";
         return result;
     }
 

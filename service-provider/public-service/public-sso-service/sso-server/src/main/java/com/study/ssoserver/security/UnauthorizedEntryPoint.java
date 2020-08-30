@@ -20,7 +20,7 @@ import java.io.PrintWriter;
 /**
  * 未认证处理
  */
-@Component
+//@Component
 public class UnauthorizedEntryPoint  implements AuthenticationEntryPoint{
 
     @Value("${path.login.page}")

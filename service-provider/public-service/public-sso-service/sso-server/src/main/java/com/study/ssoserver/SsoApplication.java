@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-@ServletComponentScan(basePackages = "com.study.ssoserver.filter")
+//@ServletComponentScan(basePackages = "com.study.ssoserver.filter")
 @EnableEurekaClient
 @MapperScan("com.study.ssoserver.mapper")
 @EnableBase

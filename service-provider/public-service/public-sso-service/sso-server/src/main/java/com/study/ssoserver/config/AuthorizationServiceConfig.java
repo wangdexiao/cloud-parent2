@@ -1,5 +1,6 @@
 package com.study.ssoserver.config;
 
+import com.netflix.discovery.converters.Auto;
 import com.study.ssoserver.service.MyClientDetailsService;
 import com.study.ssoserver.service.MyUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 @EnableAuthorizationServer //开启授权服务
@@ -48,6 +53,9 @@ public class AuthorizationServiceConfig extends AuthorizationServerConfigurerAda
     @Resource
     private TokenStore tokenStore;
 
+    @Autowired
+    private CustomeTokenEnhancer customeTokenEnhancer;
+
 //    public static void main(String[] args) {
 //        System.out.println(new BCryptPasswordEncoder().encode("admin"));
 //        System.out.println(new BCryptPasswordEncoder().encode("test"));
@@ -70,13 +78,22 @@ public class AuthorizationServiceConfig extends AuthorizationServerConfigurerAda
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
+        List<TokenEnhancer> enhancers = new ArrayList<>();
+        enhancers.add(customeTokenEnhancer);
+        enhancers.add(jwtAccessTokenConverter);
+        enhancerChain.setTokenEnhancers(enhancers);
+
         endpoints.tokenStore(tokenStore)
-                    .accessTokenConverter(jwtAccessTokenConverter)
+                .tokenEnhancer(enhancerChain)
+                .accessTokenConverter(jwtAccessTokenConverter)
                 //身份认证管理
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
 //                .authorizationCodeServices()
                 ;
+
+
     }
 
     @Override

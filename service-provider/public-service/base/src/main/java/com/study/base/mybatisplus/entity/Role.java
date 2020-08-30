@@ -1,8 +1,6 @@
-package com.study.ssoserver.entity;
+package com.study.base.mybatisplus.entity;
 
 import lombok.Data;
-
-import java.util.List;
 
 /**
  * 角色

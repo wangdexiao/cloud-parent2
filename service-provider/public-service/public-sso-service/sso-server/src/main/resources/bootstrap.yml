@@ -32,6 +32,7 @@ spring:
 
 server:
   port: 8000
+
 #  ssl:
 #    key-store-type: JKS
 #    key-store-password: 123456
@@ -59,5 +60,3 @@ logging:
 path:
   login:
     page: http://192.168.1.100:4000/login
-
-

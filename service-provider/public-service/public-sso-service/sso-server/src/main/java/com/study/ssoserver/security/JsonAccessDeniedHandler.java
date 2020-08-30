@@ -20,7 +20,7 @@ import java.io.PrintWriter;
  * @author lixingwu
  */
 @Slf4j
-@Component
+//@Component
 public class JsonAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(

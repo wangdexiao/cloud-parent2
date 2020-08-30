@@ -28,7 +28,7 @@ public class ConsumerController {
     @Value("${testNum}")
     private int testNum;
 
-    //方式二
+    //方式二/hello
     @Autowired
     private HelloService helloService;
 
