@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,8 @@ public class UserInfoController {
 
     @PostMapping("/getUserInfo")
     public Result getUserInfo(){
+        OAuth2AccessToken accessToken = oAuth2RestTemplate.getAccessToken();
+        String value = accessToken.getValue();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserInfoEntity userInfo = (UserInfoEntity)authentication.getPrincipal();
         return Result.ok(userInfo);

@@ -60,7 +60,7 @@ public class LoginController {
             Map<String,Object> result = new HashMap<String,Object>(3);
             result.put("tokenInfo", tokenMap);
             result.put("userInfo", userInfo);
-            result.put("roles", userInfo.getAuthories());
+            result.put("roles", userInfo.getAuthorities());
 
             return Result.ok(result);
         }else {

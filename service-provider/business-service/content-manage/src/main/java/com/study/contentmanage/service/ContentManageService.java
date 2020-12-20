@@ -40,6 +40,10 @@ public interface ContentManageService {
         return null;
     }
 
+    public default Content queryContentById(String id){
+        return null;
+    }
+
 
 
 

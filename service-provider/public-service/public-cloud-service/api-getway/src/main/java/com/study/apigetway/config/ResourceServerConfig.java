@@ -37,6 +37,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
                 .antMatchers("/login", //sso登录(传入授权码,获取token)
                         "/sso-server/**", //认证服务器的所有请求全部放行
                         "/content-manage/ueditor/**"
+//                        "/content-manage/content-preview/**"
                 ).permitAll()
                 .anyRequest().authenticated();
     }

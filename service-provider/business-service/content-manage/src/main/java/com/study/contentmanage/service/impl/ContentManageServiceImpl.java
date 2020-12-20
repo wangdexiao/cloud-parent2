@@ -35,4 +35,9 @@ public class ContentManageServiceImpl implements ContentManageService {
     public List<Content> queryContent() {
         return contentMapper.selectList(Wrappers.emptyWrapper());
     }
+
+    @Override
+    public Content queryContentById(String id) {
+        return contentMapper.selectById(id);
+    }
 }

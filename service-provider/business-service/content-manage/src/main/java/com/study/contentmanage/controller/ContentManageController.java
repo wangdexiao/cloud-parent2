@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,5 +44,10 @@ public class ContentManageController {
     @RequestMapping(method = RequestMethod.POST,path = "/query")
     public List<Content> selectContent(){
         return contentService.queryContent();
+    }
+
+    @RequestMapping(method = RequestMethod.POST,path = "/query/{id}")
+    public Content selectContentById(@PathVariable(name = "id") String id){
+        return contentService.queryContentById(id);
     }
 }

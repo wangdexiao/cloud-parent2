@@ -53,6 +53,7 @@ public class SsoSecurityConfig extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 // 首页所有人都可以访问
                 .antMatchers("/ueditor/**").permitAll()
+                .antMatchers("/content-preview/**","/content/query/**").permitAll()
                 //其他要认证后才可以访问，如 /member
                 .anyRequest().authenticated()
                 .and()
